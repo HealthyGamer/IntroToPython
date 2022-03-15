@@ -185,3 +185,4 @@ About
 Bot/.env
 bot/Scripts/
 bot/pyvenv.cfg
+demobot/
