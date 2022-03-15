@@ -6,7 +6,7 @@
 
 ### Python
 
-There are several development environments to choose from, but Visual Studio Code is one of the most popular. The latest instructions can be found here: [https://code.visualstudio.com/docs/datascience/overview](https://code.visualstudio.com/docs/datascience/overview)
+There are several development environments to choose from, but Visual Studio Code is one of the most popular. The latest instructions can be found here: [https://code.visualstudio.com/docs/languages/python](https://code.visualstudio.com/docs/languages/python)
 
 You will need:
 
