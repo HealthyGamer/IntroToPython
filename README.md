@@ -2,6 +2,10 @@
 
 ## Healthy Gamer Discord 2022
 
+## Project Structure
+
+There are quite a few `.ipynb` files in the root of the project. These are Jupyter notebook files used to explain concepts and contain demo code, but aren't part of any program. Instead, inside the bot folder are `.py` files that are regular python files used to create the project program.
+
 ## Setup
 
 There are several development environments to choose from, but Visual Studio Code is one of the most popular. The latest instructions can be found here: [https://code.visualstudio.com/docs/languages/python](https://code.visualstudio.com/docs/languages/python)
