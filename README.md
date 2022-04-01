@@ -12,7 +12,7 @@ There are several development environments to choose from, but Visual Studio Cod
 
 You will need:
 
-- git installed on your machine
+- git installed on your machine (preffered, not necessary if you don't download the code)
 - Python 3 installed on your machine
 - Python extension in Visual Studio Code
 - (For the tutorial pages) Jupyter extension for Visual Studio Code. [https://mybinder.org/v2/gh/HealthyGamer/IntroToPython/main](https://mybinder.org/v2/gh/HealthyGamer/IntroToPython/main) will allow you to run the notebooks online.
