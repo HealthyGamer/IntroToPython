@@ -1,17 +1,27 @@
 # bot.py
 import os
 
-import discord
+import interactions
 from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = int(os.getenv('GUILD_ID'))
 
-client = discord.Client()
+client = interactions.Client(token=TOKEN)
 
 
 @client.event
 async def on_ready():
-    print(f'{client.user} has connected to Discord!')
+    print(f'Client has connected to Discord!')
 
-client.run(TOKEN)
+
+@client.command(
+    name="getstats",
+    description="Get your player stats",
+    scope=GUILD,
+)
+async def get_stats(ctx: interactions.CommandContext):
+    await ctx.send("Here are your player stats!")
+
+client.start()
