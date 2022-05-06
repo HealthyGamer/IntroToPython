@@ -1,33 +1,20 @@
+from random import randrange
+
+
 class Player:
     def __init__(self, id, xp=0, attack=0, hp=0):
         self.id = id
         self.xp = xp
         self.attack = attack
-        self.hp = hp
+        self.max_hp = hp
+        self.current_hp = hp
 
-    def isNewPlayer(self):
-        return True
+    def do_attack(self) -> int:
+        return self.attack + randrange(4)
 
-    def isAlive(self):
-        return True
-
-    def attack(self):
-        return 1
-
-    def takeDamage(self):
+    def takeDamage(self, damage) -> bool:
+        self.current_hp -= damage
         return self.isAlive()
 
-    def updateHealth(self):
-        return self.isAlive()
-
-    def loadPlayer(self):
-        return True
-
-
-class Mob:
-    def __init__(self):
-        self.hp = 10
-        self.attack = 1
-
-    def isAlive(self):
-        return True
+    def isAlive(self) -> bool:
+        return self.current_hp > 0
