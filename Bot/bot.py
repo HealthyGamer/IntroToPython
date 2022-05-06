@@ -3,12 +3,17 @@ import os
 
 import interactions
 from dotenv import load_dotenv
+from pprint import pprint
+
+from game import Game
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = int(os.getenv('GUILD_ID'))
 
 client = interactions.Client(token=TOKEN)
+
+game = Game()
 
 
 @client.event
@@ -22,6 +27,12 @@ async def on_ready():
     scope=GUILD,
 )
 async def get_stats(ctx: interactions.CommandContext):
-    await ctx.send("Here are your player stats!")
+    player = game.getPlayer(ctx.member.id)
+    await ctx.send(f"""{ctx.member.user.username}, here are your player stats!
+
+    Attack: {player.attack}
+    HP: {player.hp}
+    XP: {player.xp}
+    """)
 
 client.start()

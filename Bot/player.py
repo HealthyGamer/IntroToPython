@@ -1,27 +1,33 @@
 class Player:
-  __init__(self, id, xp=0, attack=1, hp=1):
-    self.id = id
-    self.xp = xp
-    self.attack = attack
-    self.hp = hp
-  
-  isNewPlayer(self):
-    return true
-  
-  isAlive(self):
-    return true
-  
-  attack(self):
-    return 1
-  
-  takeDamage(self):
-    return self.isAlive()
-  
-  updateHealth(self):
-    return self.isAlive()
-  
-  loadPlayer(self)
-    return true
-    
-    
-    
+    def __init__(self, id, xp=0, attack=0, hp=0):
+        self.id = id
+        self.xp = xp
+        self.attack = attack
+        self.hp = hp
+
+    def isNewPlayer(self):
+        return True
+
+    def isAlive(self):
+        return True
+
+    def attack(self):
+        return 1
+
+    def takeDamage(self):
+        return self.isAlive()
+
+    def updateHealth(self):
+        return self.isAlive()
+
+    def loadPlayer(self):
+        return True
+
+
+class Mob:
+    def __init__(self):
+        self.hp = 10
+        self.attack = 1
+
+    def isAlive(self):
+        return True
