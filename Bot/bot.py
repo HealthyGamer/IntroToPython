@@ -27,14 +27,13 @@ async def on_ready():
     scope=GUILD,
 )
 async def get_stats(ctx: interactions.CommandContext):
-    player = game.getPlayer(str(ctx.member.id))
+    player = game.get_player(str(ctx.member.id))
     await ctx.send(f"""{ctx.member.user.username}, here are your player stats!
 
     Id: {player.id}
     Attack: {player.attack}
     HP: {player.current_hp}
     XP: {player.xp}
-    Game: Players: {len(game.players)} Encounters: {len(game.encounters)}
     """)
 
 
@@ -44,7 +43,7 @@ async def get_stats(ctx: interactions.CommandContext):
     scope=GUILD,
 )
 async def create_encounter(ctx: interactions.CommandContext):
-    result = game.createEncounter(str(ctx.member.id))
+    result = game.create_encounter(str(ctx.member.id))
     await ctx.send(result)
 
 
@@ -54,7 +53,7 @@ async def create_encounter(ctx: interactions.CommandContext):
     scope=GUILD,
 )
 async def player_action(ctx: interactions.CommandContext):
-    result = game.playerAction(str(ctx.member.id))
+    result = game.player_action(str(ctx.member.id))
     await ctx.send(result)
 
 
@@ -64,7 +63,7 @@ async def player_action(ctx: interactions.CommandContext):
     scope=GUILD,
 )
 async def complete_encounter(ctx: interactions.CommandContext):
-    result = game.completeEncounter(str(ctx.member.id))
+    result = game.complete_encounter(str(ctx.member.id))
     await ctx.send(result)
 
 

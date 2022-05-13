@@ -10,9 +10,9 @@ class Mob:
     def do_attack(self):
         return self.attack + randrange(2)
 
-    def takeDamage(self, damage):
+    def take_damage(self, damage):
         self.current_hp -= damage
-        return self.isAlive()
+        return self.is_alive()
 
-    def isAlive(self):
+    def is_alive(self):
         return self.current_hp > 0

@@ -8,47 +8,51 @@ class Game(object):
         self.players = dict()
         self.encounters = dict()
 
-    def getPlayer(self, playerId):
-        player = self.players.get(playerId)
+    def get_player(self, player_id):
+        player = self.players.get(player_id)
         if player is not None:
-            self.players[playerId] = player
             return player
         else:
-            self.players[playerId] = Player(playerId, 0, 2, 10)
-            return self.players[playerId]
+            self.players[player_id] = Player(player_id, 0, 1, 10)
+            return self.players[player_id]
 
-    def createEncounter(self, playerId):
-        encounter = self.encounters.get(playerId)
+    def create_encounter(self, player_id):
+        encounter = self.encounters.get(player_id)
         print(encounter)
-        if encounter is not None:
+        if encounter:
             return f"""Current Status:
-            Player HP: {self.players[playerId].current_hp}
+            Player HP: {self.players[player_id].current_hp}
             Mob HP: {encounter.mob.current_hp}"""
         else:
-            player = self.getPlayer(playerId)
-            self.encounters[playerId] = Encounter(player)
-            return "Encounter created!"
+            player = self.players[player_id]
+            if player.is_alive():
+                self.encounters[player_id] = Encounter(player)
+                return "Encounter created!"
+            else:
+                return "Can't start a fight with no health!"
 
-    def playerAction(self, playerId):
-        encounter = self.encounters.get(playerId)
+    def player_action(self, player_id):
+        encounter = self.encounters.get(player_id)
         if encounter is None:
-            self.createEncounter(playerId)
-            encounter = self.encounters[playerId]
+            new_encounter = self.create_encounter(player_id)
+            encounter = self.encounters[player_id]
+            if encounter is None:
+                return new_encounter
 
-        result = encounter.playerAction()
-        self.players[playerId] = encounter.player
+        result = encounter.player_action()
+        self.players[player_id] = encounter.player
 
         if result.result == Result.CONTINUE:
-            self.encounters[playerId] = encounter
+            self.encounters[player_id] = encounter
         else:
-            self.completeEncounter(playerId)
+            self.complete_encounter(player_id)
 
         return result.text
 
-    def completeEncounter(self, playerId):
-        encounter = self.encounters.get(playerId)
-        if encounter is not None:
-            del self.encounters[playerId]
+    def complete_encounter(self, player_id):
+        encounter = self.encounters.get(player_id)
+        if encounter:
+            del self.encounters[player_id]
             return "Player ran away"
         else:
             return "Encounter not found"

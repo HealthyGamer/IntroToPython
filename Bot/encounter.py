@@ -22,20 +22,20 @@ class Encounter:
         self.mob = Mob()
         self.player = player
 
-    def playerAction(self):
+    def player_action(self):
         damage = self.player.do_attack()
-        mobResult = self.mob.takeDamage(damage)
-        if(mobResult):
-            mobDamage = self.mob.do_attack()
-            playerResult = self.player.takeDamage(mobDamage)
-            if(playerResult):
-                return ActionResult(Result.CONTINUE, f"Player attacked for {damage}. Mob attacked with {mobDamage}.")
+        mob_result = self.mob.take_damage(damage)
+        if(mob_result):
+            mob_damage = self.mob.do_attack()
+            player_result = self.player.take_damage(mob_damage)
+            if(player_result):
+                return ActionResult(Result.CONTINUE, f"Player attacked for {damage}. Mob attacked with {mob_damage}.")
             else:
-                return ActionResult(Result.LOSE, f"Player attacked for {damage}. Mob attacked with {mobDamage}. Player fainted.")
+                return ActionResult(Result.LOSE, f"Player attacked for {damage}. Mob attacked with {mob_damage}. Player fainted.")
         else:
-            self.grantXP()
+            self.grant_XP()
             return ActionResult(Result.WIN, f"Player attacked for {damage}. Mob fainted.")
 
-    def grantXP(self):
+    def grant_XP(self):
         self.player.xp += 2
         return self.player

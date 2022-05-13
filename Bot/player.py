@@ -1,4 +1,5 @@
 from random import randrange
+from datetime import datetime
 
 
 class Player:
@@ -7,14 +8,31 @@ class Player:
         self.xp = xp
         self.attack = attack
         self.max_hp = hp
-        self.current_hp = hp
+        self._current_hp = hp
+        self.last_hp_update = datetime.now()
+
+    @property
+    def current_hp(self):
+        now = datetime.now()
+        if self._current_hp < self.max_hp:
+            time_passed = now - self.last_hp_update
+            hp_change = (time_passed.total_seconds() - 30) * .1
+            if hp_change + self._current_hp > self.max_hp:
+                self._current_hp = self.max_hp
+            else:
+                self._current_hp += hp_change
+
+        self.last_hp_update = now
+        return self._current_hp
 
     def do_attack(self) -> int:
         return self.attack + randrange(4)
 
-    def takeDamage(self, damage) -> bool:
+    def take_damage(self, damage) -> bool:
         self.current_hp -= damage
-        return self.isAlive()
+        if self.current_hp < 0:
+            self.current_hp = 0
+        return self.is_alive()
 
-    def isAlive(self) -> bool:
+    def is_alive(self) -> bool:
         return self.current_hp > 0
