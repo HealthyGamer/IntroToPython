@@ -29,10 +29,10 @@ class Player:
         return self.attack + randrange(4)
 
     def take_damage(self, damage) -> bool:
-        self.current_hp -= damage
-        if self.current_hp < 0:
-            self.current_hp = 0
+        self._current_hp -= damage
+        if self._current_hp < 0:
+            self._current_hp = 0
         return self.is_alive()
 
     def is_alive(self) -> bool:
-        return self.current_hp > 0
+        return self._current_hp > 0
