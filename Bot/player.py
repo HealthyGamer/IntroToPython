@@ -16,7 +16,7 @@ class Player:
         now = datetime.now()
         if self._current_hp < self.max_hp:
             time_passed = now - self.last_hp_update
-            hp_change = (time_passed.total_seconds() - 30) * .1
+            hp_change = round((time_passed.total_seconds() - 30) * .1)
             if hp_change + self._current_hp > self.max_hp:
                 self._current_hp = self.max_hp
             else:
@@ -32,6 +32,7 @@ class Player:
         self._current_hp -= damage
         if self._current_hp < 0:
             self._current_hp = 0
+        self.last_hp_update = datetime.now()
         return self.is_alive()
 
     def is_alive(self) -> bool:
