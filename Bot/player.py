@@ -16,12 +16,12 @@ class Player:
         now = datetime.now()
         if self._current_hp < self.max_hp:
             time_passed = now - self.last_hp_update
-            hp_change = round((time_passed.total_seconds() - 30) * .1)
-            if hp_change + self._current_hp > self.max_hp:
-                self._current_hp = self.max_hp
-            else:
-                self._current_hp += hp_change
-
+            if time_passed.total_seconds() > 10:
+                hp_change = round((time_passed.total_seconds() - 30) * .1)
+                if hp_change + self._current_hp > self.max_hp:
+                    self._current_hp = self.max_hp
+                else:
+                    self._current_hp += hp_change
         self.last_hp_update = now
         return self._current_hp
 
