@@ -18,7 +18,6 @@ class Game(object):
 
     def create_encounter(self, player_id):
         encounter = self.encounters.get(player_id)
-        print(encounter)
         if encounter:
             return f"""Current Status:
             Player HP: {self.players[player_id].current_hp}
