@@ -1,6 +1,6 @@
 # Into to Python
 
-## Healthy Gamer Discord 2022
+## Healthy Gamer Discord
 
 ## Project Structure
 
